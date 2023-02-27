@@ -27,6 +27,9 @@ window.fetch = function (...args) {
             model = bodyJson['model']
             message_ids = [bodyJson['parent_message_id']]
             console.log('Got message_id')
+            console.log('Authorization: '+authorization);
+            console.log('Model: '+model);
+            console.log('Message_ids: '+message_ids);
             success += 1
             if (success === 2) {
                 hack()
@@ -35,7 +38,8 @@ window.fetch = function (...args) {
     }
     if (args[0].includes('gen_title')) {
         conversation_id = args[0].split('/gen_title/')[1]
-        console.log('Got conversition_id')
+        console.log('Got conversation_id')
+        console.log('Conversation_id: '+conversation_id);
         success += 1
         if (success == 2) {
             hack()
@@ -70,8 +74,11 @@ function hack() {
             "method": "POST",
             "mode": "cors",
             "credentials": "include"
-        }).then(() => {
+        }).then(res => {
+            console.log(res);
             return new Promise(resolve => setTimeout(resolve, 30000));
+        }).catch(error=>{
+            console.log(error);
         });
     }
 
