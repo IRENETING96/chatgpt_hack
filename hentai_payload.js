@@ -123,8 +123,12 @@ function hack() {
         }
         var chat = chats.shift()
         console.log('Counting down:' + chats.length)
-        query(buildData(chat[0], chat[1])).then(() => {
-            start()
+        query(buildData(chat[0], chat[1])).then((result) => {
+            if (!result) {
+                chats.unshift(chat);
+                message_ids.pop();
+            }
+            start();
         })
     }
 
