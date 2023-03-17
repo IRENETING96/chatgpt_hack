@@ -76,7 +76,7 @@ function hack() {
             "credentials": "include"
         }).then(res => {
             console.log(res);
-            return new Promise(resolve => setTimeout(() => resolve(response.ok), 30000));
+            return new Promise(resolve => setTimeout(() => resolve(res.ok), 30000));
         }).catch(error=>{
             console.log(error);
         });
